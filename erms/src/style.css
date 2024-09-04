@@ -1,0 +1,297 @@
+/* Styles transferred from Homepage.vue */
+.homepage {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease;
+  padding-top: 60px;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-image: url("@/assets/bck.png");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  height: calc(100vh - 60px); /* Subtract header height */
+  margin-top: 60px; /* Add margin to account for fixed header */
+  position: relative; /* For absolute positioning of child elements */
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: #ffffff;
+  color: #333333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  height: 60px;
+}
+
+.logo-container {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333333;
+  font-weight: bold;
+  transition: color 0.3s ease;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dark-mode-toggle,
+.user-icon {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #333333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+}
+
+.hero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-content {
+  text-align: center;
+}
+
+.book-now {
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+.book-now:hover {
+  background-color: #ff4500;
+}
+
+.footer {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 1rem 0;
+  font-size: 1rem;
+  margin-top: auto; /* Push footer to the bottom */
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.footer-left,
+.footer-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.social-icons a {
+  color: #ffffff;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: 1px solid #333;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 0.5rem;
+  }
+
+  nav {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  .user-actions {
+    order: 2;
+  }
+
+  .hero-content {
+    padding: 1rem;
+  }
+
+  .book-now {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-right {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav a {
+    padding: 0.3rem;
+    font-size: 0.8rem;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .book-now {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .footer {
+    font-size: 0.9rem;
+  }
+
+  .social-icons a {
+    font-size: 1.2rem;
+  }
+}
+
+.dark-mode header {
+  background-color: #333;
+  color: white;
+}
+
+.dark-mode nav a,
+.dark-mode .dark-mode-toggle,
+.dark-mode .user-icon {
+  color: white;
+}
+
+nav a:hover,
+.dark-mode nav a:hover {
+  color: #ff6347;
+}
+
+.book-now:hover {
+  background-color: #ff4500;
+}
+
+.social-icons a:hover {
+  color: #ff6347;
+}
+
+/* Dark mode styles for navbar only */
+header.dark-mode {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+header.dark-mode nav a,
+header.dark-mode .dark-mode-toggle,
+header.dark-mode .user-icon {
+  color: #ffffff;
+}
+
+/* Dark mode styles */
+.dark-mode {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.dark-mode header {
+  background-color: #333;
+}
+
+.dark-mode nav a,
+.dark-mode .dark-mode-toggle,
+.dark-mode .user-icon {
+  color: #ffffff;
+}
+
+.dark-mode .footer {
+  background-color: #333;
+}
+
+.dark-mode .book-now {
+  background-color: #ff4500;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
