@@ -1,4 +1,4 @@
-/* Styles transferred from Homepage.vue */
+/* Homepage*/
 .homepage {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -16,11 +16,11 @@
   flex-direction: column;
   background-image: url("@/assets/bck.png");
   background-size: cover;
-  background-position: center top;
+  background-position: center;
   background-repeat: no-repeat;
   height: calc(100vh - 60px); /* Subtract header height */
-  margin-top: 60px; /* Add margin to account for fixed header */
   position: relative; /* For absolute positioning of child elements */
+  overflow: hidden; /* Prevent content from overflowing */
 }
 
 header {
@@ -96,12 +96,23 @@ nav a {
   right: 0;
   bottom: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 1rem;
 }
 
 .hero-content {
   text-align: center;
+  background-color: transparent; /* Remove the background */
+  padding: 2rem;
+}
+
+/* Ensure text is readable on any background */
+.hero h1,
+.hero p {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: white;
 }
 
 .book-now {
@@ -113,6 +124,8 @@ nav a {
   cursor: pointer;
   transition: background-color 0.3s ease;
   border-radius: 5px;
+  /* Add a subtle text shadow for better visibility */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .book-now:hover {
@@ -197,6 +210,19 @@ nav a {
 
   .footer-right {
     margin-top: 1rem;
+  }
+
+  .main-content {
+    height: calc(100vh - 60px); /* Adjust for header on mobile */
+  }
+
+  .hero {
+    position: relative; /* Change to relative positioning on smaller screens */
+    padding: 1rem;
+  }
+
+  body {
+    padding-top: 60px;
   }
 }
 
@@ -294,4 +320,195 @@ html {
   margin: 0;
   padding: 0;
   height: 100%;
+}
+
+/* Add these styles to your existing CSS file */
+
+/* Dropdown styles */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: transparent;
+  color: #333333;
+  font-weight: bold;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.dropdown-content {
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.dropdown-content a {
+  color: #333333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropbtn {
+  color: #ff6347;
+}
+
+/* Show the dropdown menu when it's open */
+.dropdown-content.show {
+  display: block;
+}
+
+/* Dark mode styles for dropdown */
+.dark-mode .dropbtn {
+  color: #ffffff;
+}
+
+.dark-mode .dropdown-content {
+  background-color: #444444;
+}
+
+.dark-mode .dropdown-content a {
+  color: #ffffff;
+}
+
+.dark-mode .dropdown-content a:hover {
+  background-color: #555555;
+}
+
+/* Responsive styles for dropdown */
+@media (max-width: 768px) {
+  .dropdown {
+    width: 100%;
+    text-align: center;
+  }
+
+  .dropdown-content {
+    width: 100%;
+    position: static;
+  }
+}
+
+/* Login styles */
+.login-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.login-content {
+  background-color: white;
+  padding: 2.5rem;
+  border-radius: 15px;
+  width: 320px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.login-content .logo-container {
+  width: 120px;
+  height: 120px;
+  margin: -80px auto 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.login-content .logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.login-title {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.login-content .form-group {
+  margin-bottom: 1.2rem;
+}
+
+.login-content input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.login-content input:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+.login-content .form-actions {
+  margin-top: 1.5rem;
+}
+
+.login-content button[type="submit"] {
+  width: 100%;
+  padding: 0.9rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.login-content button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.login-content button[type="submit"]:active {
+  transform: scale(0.98);
+}
+
+.login-content .register-option {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.login-content .register-option a {
+  color: #4caf50;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-content .register-option a:hover {
+  text-decoration: underline;
+}
+
+.login-content .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
 }

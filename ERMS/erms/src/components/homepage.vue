@@ -5,18 +5,24 @@
         <img :src="logoPath" alt="Razz Rel Events Logo" class="logo" />
       </div>
       <nav>
-        <router-link
-          v-for="link in navLinks"
-          :key="link.path"
-          :to="link.path"
-          >{{ link.name }}</router-link
-        >
+        <router-link to="/">Home</router-link>
+        <div class="dropdown">
+          <button class="dropbtn" @click="toggleDropdown">Packages</button>
+          <div class="dropdown-content" v-show="isDropdownOpen">
+            <router-link to="/packages/wedding">Wedding</router-link>
+            <router-link to="/packages/debut">Debut</router-link>
+            <router-link to="/packages/kiddie-party">Kiddie Party</router-link>
+            <router-link to="/packages/christening">Christening</router-link>
+          </div>
+        </div>
+        <router-link to="/gallery">Gallery</router-link>
+        <router-link to="/contact">Contact</router-link>
       </nav>
       <div class="user-actions">
         <button @click="toggleDarkMode" class="dark-mode-toggle">
           {{ isDarkMode ? "☀️" : "🌙" }}
         </button>
-        <div class="user-icon">
+        <div class="user-icon" @click="toggleLoginModal">
           <span>👤</span>
         </div>
       </div>
@@ -56,31 +62,42 @@
         <p>All Rights Reserved 2024</p>
       </div>
     </footer>
+
+    <!-- Login Modal -->
+    <Login
+      :isOpen="isLoginModalOpen"
+      @close="closeLoginModal"
+      @login="handleLogin"
+    />
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import { useRouter } from "vue-router";
+import Login from "./Login.vue";
 import logoImage from "../assets/logo.png";
 import backgroundImage from "../assets/bck.png";
 
 const router = useRouter();
 const isDarkMode = ref(false);
+const isDropdownOpen = ref(false);
+const isLoginModalOpen = ref(false);
 
 const logoPath = ref(logoImage);
 const backgroundImageUrl = ref(backgroundImage);
 
-const navLinks = [
-  { name: "Home", path: "/" },
-  { name: "Packages", path: "/packages" },
-  { name: "Gallery", path: "/gallery" },
-  { name: "Contact", path: "/contact" },
-];
+// Form data
+const formData = ref({
+  name: "",
+  email: "",
+  phone: "",
+  message: "",
+});
 
 const toggleDarkMode = () => {
   isDarkMode.value = !isDarkMode.value;
-  console.log("Dark mode toggled:", isDarkMode.value); // Add this line for debugging
+  document.body.classList.toggle("dark-mode", isDarkMode.value);
 };
 
 const handleBookNowClick = () => {
@@ -88,5 +105,45 @@ const handleBookNowClick = () => {
   // Add your booking logic here
 };
 
-// Other functions remain the same
+const toggleDropdown = () => {
+  isDropdownOpen.value = !isDropdownOpen.value;
+};
+
+// Close dropdown when clicking outside
+const closeDropdown = (event) => {
+  if (!event.target.closest(".dropdown")) {
+    isDropdownOpen.value = false;
+  }
+};
+
+const toggleLoginModal = () => {
+  isLoginModalOpen.value = !isLoginModalOpen.value;
+};
+
+const closeLoginModal = () => {
+  isLoginModalOpen.value = false;
+};
+
+const handleLogin = (credentials) => {
+  console.log("Login credentials received:", credentials);
+  // Here you would typically handle the login logic
+  // For example, calling an API and storing the user's session
+  closeLoginModal();
+};
+
+onMounted(() => {
+  document.addEventListener("click", closeDropdown);
+});
+
+onUnmounted(() => {
+  document.removeEventListener("click", closeDropdown);
+});
 </script>
+
+<style scoped>
+/* ... existing styles ... */
+
+.user-icon {
+  cursor: pointer;
+}
+</style>
